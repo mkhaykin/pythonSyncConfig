@@ -1,0 +1,35 @@
+source:
+  host: localhost
+  port: 5432
+  database: dev_source
+  user: dev_user
+  password: dev_pass
+
+destination:
+  host: localhost
+  port: 5432
+  database: dev_target
+  user: dev_user
+  password: dev_pass
+
+mappings:
+  - source:
+      schema: public
+      table: users
+      columns: ["id", "name"]
+    destination:
+      schema: staging
+      table: dim_users
+      columns: ["user_id", "full_name"]
+      pk: ["user_id"]
+
+  - source:
+      schema: public
+      table: examples
+      columns:
+      - id
+      - "test"
+
+    destination:
+      schema: staging
+      table: examples
